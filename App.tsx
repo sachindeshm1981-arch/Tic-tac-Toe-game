@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Board from './components/Board';
 import ScoreBoard from './components/ScoreBoard';
 import GameMenu from './components/GameMenu';
+import Calculator from './components/Calculator';
 import { Player, GameMode, GameStatus, PlayerProfile } from './types';
 import { getGeminiMove } from './services/geminiService';
 import { RefreshIcon, HomeIcon, TrophyIcon } from './components/Icons';
@@ -161,7 +162,9 @@ const App: React.FC = () => {
         </header>
 
         {status === GameStatus.MENU ? (
-          <GameMenu onStartGame={startGame} />
+          <GameMenu onStartGame={startGame} onOpenCalculator={() => setStatus(GameStatus.CALCULATOR)} />
+        ) : status === GameStatus.CALCULATOR ? (
+          <Calculator onClose={() => setStatus(GameStatus.MENU)} />
         ) : (
           <div className="w-full animate-in zoom-in-95 duration-500">
             
