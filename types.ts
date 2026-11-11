@@ -9,6 +9,7 @@ export enum GameStatus {
   MENU = 'MENU',
   SETUP = 'SETUP',
   PLAYING = 'PLAYING',
+  CALCULATOR = 'CALCULATOR',
 }
 
 export interface PlayerProfile {
