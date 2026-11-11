@@ -4,9 +4,10 @@ import { CpuIcon, UsersIcon } from './Icons';
 
 interface GameMenuProps {
   onStartGame: (mode: GameMode, names?: { x: string; o: string }) => void;
+  onOpenCalculator?: () => void;
 }
 
-const GameMenu: React.FC<GameMenuProps> = ({ onStartGame }) => {
+const GameMenu: React.FC<GameMenuProps> = ({ onStartGame, onOpenCalculator }) => {
   const [menuState, setMenuState] = useState<'MAIN' | 'PVP_SETUP'>('MAIN');
   const [p1Name, setP1Name] = useState('Player 1');
   const [p2Name, setP2Name] = useState('Player 2');
@@ -96,6 +97,23 @@ const GameMenu: React.FC<GameMenuProps> = ({ onStartGame }) => {
           </div>
         </div>
       </button>
+
+      {onOpenCalculator && (
+        <button
+          onClick={onOpenCalculator}
+          className="group w-full relative overflow-hidden rounded-2xl glass-panel p-6 text-left transition-all hover:border-amber-500/50 hover:bg-white/5"
+        >
+          <div className="relative z-10 flex items-center gap-4">
+            <div className="p-3 bg-amber-500/20 rounded-lg text-amber-400">
+              <span className="font-bold text-2xl">≋</span>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-white group-hover:text-amber-300 transition-colors">Calculator</h3>
+              <p className="text-sm text-slate-400">Quick in-app calculator</p>
+            </div>
+          </div>
+        </button>
+      )}
     </div>
   );
 };
